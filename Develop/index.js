@@ -8,6 +8,7 @@ const inquirer = require('inquirer');
 const createTeam = [];
 const createHTML = require('./dist/indexHTML');
 const Employee = require('./lib/Employee');
+const { listenerCount } = require('process');
 
 const createManager = () => {
     return inquirer.prompt([
@@ -66,6 +67,29 @@ const createManager = () => {
         ]).then(results => {
             const manager = new Manager(results.name, results.employeeId, results.email, results.officeNumber);
             createTeam.push(manager);
+        })
+    }
+
+    const selectEmployee = () => {
+        return inquirer.prompt([
+        {
+            type:'list',
+            name: 'position',
+            message: "Please enter your employee's position",
+            choices: ['Add an engineer', 'Add an intern', 'Create team']
+        }
+        ]).then(userChoice =>{
+            switch (userChoice.position){
+                case 'Add an engineer':
+                    createEngineer();
+                    break
+                case 'Add an intern':
+                    createIntern();
+                    break
+                default:
+                            
+                
+            }
         })
     }
 
