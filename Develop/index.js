@@ -6,9 +6,8 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 const createTeam = [];
-const createHTML = require('./dist/indexHTML');
-const Employee = require('./lib/Employee');
-const { listenerCount } = require('process');
+const generateHTML = require('./dist/generateHtml.js');
+const fileName = 'index.html';
 
 const createManager = () => {
     return inquirer.prompt([
@@ -67,6 +66,7 @@ const createManager = () => {
         ]).then(results => {
             const manager = new Manager(results.name, results.employeeId, results.email, results.officeNumber);
             createTeam.push(manager);
+            selectEmployee();
         })
     }
 
@@ -87,7 +87,8 @@ const createManager = () => {
                     createIntern();
                     break
                 default:
-                            
+                    createBranch();
+
                 
             }
         })
@@ -150,6 +151,7 @@ const createManager = () => {
         ]).then (results => {
             const engineer = new Engineer(results.name, results.employeeId, results.email, results.githubUser);
             createTeam.push(engineer);
+            selectEmployee();
         })
     }
 
@@ -210,9 +212,15 @@ const createManager = () => {
         ]).then(results =>{
             const intern = new Intern(results.name, results.employeeId, results.email, results.school);
             createTeam.push(intern);
+            selectEmployee();
         })
     }
+
+    const createBranch = () => {
+        
+        fs.writeFile(fileName, generateHTML(createTeam), "utf-8")
+        
+    }
     
-    createManager()
-    createEngineer()
-    createIntern()
+    createManager();
+    
