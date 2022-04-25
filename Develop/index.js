@@ -127,8 +127,68 @@ const createManager = () => {
             const engineer = new Engineer(results.name, results.employeeId, results.email, results.githubUser);
             createTeam.push(engineer);
         })
+    }
 
+    const createIntern = () => {
+        return inquirer.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Please write your name.',
+                validate: nameInput => {
+                    if(nameInput){
+                        return true;
+                    }  else{
+                        console.log('Please enter a valid name.');
+                        return false;
+                    }
+                    }
+            },
+            {
+                type: 'input',
+                name: 'employeeId',
+                message: 'Please enter your designated ID.',
+                validate: nameInput => {
+                    if (nameInput){
+                        return true;
+                    } else{
+                        console.log('Please enter a valid ID.');
+                        return false;
+                    }
+                }
+            },
+            {
+                type:'input',
+                name:'email',
+                message: 'Please enter your email.',
+                validate: email => {
+                    if(email) {
+                        return true;
+                    }else{
+                        console.log('Please enter a valid email.')
+                        return false;
+                    }
+                }
+            },
+            {
+                type:'input',
+                name:'school',
+                message:'Please enter your school name.',
+                validate: school => {
+                    if(school) {
+                        return true;
+                    } else{
+                        console.log('Please enter a valid school name')
+                        return false;
+                    }
+                } 
+            },
+        ]).then(results =>{
+            const intern = new Intern(results.name, results.employeeId, results.email, results.school);
+            createTeam.push(intern);
+        })
     }
     
     createManager()
     createEngineer()
+    createIntern()
