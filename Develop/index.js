@@ -26,7 +26,7 @@ const createManager = () => {
             },
             {
                 type: 'input',
-                name: 'employeeId',
+                name: 'id',
                 message: 'Please enter your designated ID.',
                 validate: nameInput => {
                     if (nameInput){
@@ -64,7 +64,7 @@ const createManager = () => {
                 } 
             },
         ]).then(results => {
-            const manager = new Manager(results.name, results.employeeId, results.email, results.officeNumber);
+            const manager = new Manager(results.name, results.id, results.email, results.officeNumber);
             createTeam.push(manager);
             selectEmployee();
         })
@@ -111,7 +111,7 @@ const createManager = () => {
             },
             {
                 type: 'input',
-                name: 'employeeId',
+                name: 'id',
                 message: 'Please enter your designated ID.',
                 validate: nameInput => {
                     if (nameInput){
@@ -149,7 +149,7 @@ const createManager = () => {
                 } 
             },
         ]).then (results => {
-            const engineer = new Engineer(results.name, results.employeeId, results.email, results.githubUser);
+            const engineer = new Engineer(results.name, results.id, results.email, results.githubUser);
             createTeam.push(engineer);
             selectEmployee();
         })
@@ -172,7 +172,7 @@ const createManager = () => {
             },
             {
                 type: 'input',
-                name: 'employeeId',
+                name: 'id',
                 message: 'Please enter your designated ID.',
                 validate: nameInput => {
                     if (nameInput){
@@ -210,7 +210,7 @@ const createManager = () => {
                 } 
             },
         ]).then(results =>{
-            const intern = new Intern(results.name, results.employeeId, results.email, results.school);
+            const intern = new Intern(results.name, results.id, results.email, results.school);
             createTeam.push(intern);
             selectEmployee();
         })

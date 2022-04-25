@@ -1,7 +1,7 @@
 const generateTeam = (team) => {
-    
+    console.log(team);
     const indexHtml = [];
-
+    
     const generateManager = manager => {
         let managerHtml = `
         
@@ -47,7 +47,7 @@ const generateTeam = (team) => {
                     &#127891; Intern
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${intern.employeeId}</li>
+                    <li class="list-group-item">ID: ${intern.id}</li>
                     <li class="list-group-item">Email: <span id="email"><a
                                 href="mailto:${intern.email}">${intern.email}</a></span></li>
                     <li class="list-group-item"> School: ${intern.school}</li>
@@ -57,6 +57,50 @@ const generateTeam = (team) => {
         indexHtml.push(internHtml);
     }
     
+    for (let i=0; i< team.lenght; i++){
+        if (team[i].getRole() === "Manager"){
+            generateManager(team[i]);
+        }
+        if (team[i].getRole() === "Engineer"){
+            generateEngineer(team[i])
+        }
+        if (team[i].getRole() === "Intern"){
+            generateIntern(team[i]);
+        }
+    }
+
+    return html.join('');
 } 
 
-module.exports= generateHtml;
+module.exports = team => {
+
+    return `
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <src></src>
+    <title>Team Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header>
+        <h1> My Team &#10003;</h1>
+    </header>
+    <main>
+        <div class="container mx-auto">
+            ${generateTeam(team)}
+        </div>
+    </main>
+</body>
+
+</html>
+    `;
+}
