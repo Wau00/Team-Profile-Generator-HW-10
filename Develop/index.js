@@ -1,13 +1,16 @@
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');  
+const generateHTML = require('./dist/generateHtml.js');
 
 const fs = require('fs');
 const inquirer = require('inquirer');
 
+const path = require('path');
+const storage = path.resolve('dist');
+const htmlPath = path.join(storage, "index.html");
+
 const createTeam = [];
-const generateHTML = require('./dist/generateHtml.js');
-const fileName = 'index.html';
 
 const createManager = () => {
     return inquirer.prompt([
@@ -217,8 +220,9 @@ const createManager = () => {
     }
 
     const createBranch = () => {
-        
-        fs.writeFile(fileName, generateHTML(createTeam), "utf-8")
+
+        console.log("Success! (Check 'dist' directory for final result)")
+        fs.writeFileSync(htmlPath, generateHTML(createTeam), "UTF-8");
         
     }
     

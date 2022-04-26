@@ -11,7 +11,7 @@ const generateTeam = (team) => {
                     &#128084; Manager
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${manager.employeeId}</li>
+                    <li class="list-group-item">ID: ${manager.getId()}</li>
                     <li class="list-group-item">Email: <span id="email"><a
                                 href="mailto:${manager.email}">${manager.email}</a></span></li>
                     <li class="list-group-item"> Office Number: ${manager.officeNumber}</li>
@@ -29,7 +29,7 @@ const generateTeam = (team) => {
                     &#128187; Engineer
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${engineer.employeeId}</li>
+                    <li class="list-group-item">ID: ${engineer.getId()}</li>
                     <li class="list-group-item">Email: <span id="email"><a
                                 href="mailto:${engineer.email}">${engineer.email}</a></span></li>
                     <li class="list-group-item"> GitHub: <span id="github"><a target="_blank"
@@ -43,11 +43,11 @@ const generateTeam = (team) => {
         let internHtml = `
         <div class="card shadow-lg p-3 mb-5 rounded" style="width: 18rem;">
                 <div class="card-header">
-                    Axel <br />
+                    ${intern.name}<br />
                     &#127891; Intern
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${intern.id}</li>
+                    <li class="list-group-item">ID: ${intern.getId()}</li>
                     <li class="list-group-item">Email: <span id="email"><a
                                 href="mailto:${intern.email}">${intern.email}</a></span></li>
                     <li class="list-group-item"> School: ${intern.school}</li>
@@ -57,7 +57,7 @@ const generateTeam = (team) => {
         indexHtml.push(internHtml);
     }
     
-    for (let i=0; i< team.lenght; i++){
+    for (let i=0; i< team.length; i++){
         if (team[i].getRole() === "Manager"){
             generateManager(team[i]);
         }
@@ -69,7 +69,7 @@ const generateTeam = (team) => {
         }
     }
 
-    return html.join('');
+    return indexHtml.join('');
 } 
 
 module.exports = team => {
