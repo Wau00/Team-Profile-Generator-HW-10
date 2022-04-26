@@ -31,6 +31,7 @@ As a user, feel free to interact with the terminal, by answering the multiple qu
 - Jest.js
 - JavaScript
 - Node.js
+- NPM
 
 # Reference
 
